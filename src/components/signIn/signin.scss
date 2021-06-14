@@ -1,0 +1,17 @@
+.form__signin{
+   width: 100%;
+
+
+   .buttons{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   .btn__signin{
+      padding: 1.5rem 4rem;
+   }
+   .btn__google{
+      padding: 1.5rem 4rem;
+      background: #4285F4;
+   }
+}

@@ -1,0 +1,49 @@
+.form{
+   width: 100%;
+
+   
+   h2.heading{
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+   }
+   .heading--sub{
+      font-size: 2.2rem;
+      margin-bottom: 5rem;
+   }
+
+   &__group{
+      margin-bottom: 5rem;
+      position: relative;
+   }
+   &__input{
+      padding: 1.3rem 5px;
+      width: 100%;
+      font-size: 2.2rem;
+      font-family: inherit;
+      border: none;
+      border-bottom: 2px solid #000;
+   }
+
+   &__label{
+      font-size: 2.2rem;
+      display: block;
+      position: absolute;
+      bottom: 1.3rem;
+      left:5px;
+      transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+   }
+   
+   &__input:focus ~ &__label,
+   &__label.shrink{
+      font-size: 1.6rem;
+      font-weight: bold;
+      transform: translateY(-3.5rem)
+   }
+
+
+   button{
+      text-transform: uppercase;
+      font-size: 1.6rem;
+   }
+
+}

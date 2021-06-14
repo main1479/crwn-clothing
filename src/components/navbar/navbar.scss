@@ -1,0 +1,55 @@
+.nav{
+   padding: 2rem 0;
+   border-bottom: 1px solid rgb(206, 206, 206);
+   margin-bottom: 5rem;
+   &__container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   .logo{
+      width: 5rem;
+   }
+
+   &__menu{
+      display: flex;
+      align-items: center;
+
+   }
+
+   &__link{
+      color: #000;
+      font-size: 2.2rem;
+      font-weight: 300;
+      opacity: 0.7;
+      position: relative;
+      &:not(:last-child){
+         margin-right: 5rem;
+      }
+
+      &::after{
+         content: '';
+         position: absolute;
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background: #000;
+         bottom: -10px;
+         left: calc(50% - 4px);
+         transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+         opacity: 0;
+         transform: translateY(20px);
+      }
+
+      &.active,
+      &:hover{
+         opacity: 1;
+
+         &::after{
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+   }
+}
