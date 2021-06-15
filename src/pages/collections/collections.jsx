@@ -6,7 +6,6 @@ import Product from '../../components/products/product';
 const Collections = (props) => {
 	const routeName = props.location.pathname.slice(6);
 	const collection = SHOP_DATA.filter((collection) => collection.routeName === routeName)[0];
-	console.log(collection);
 	return (
 		<div className="container">
 			<h1

@@ -1,28 +1,48 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { auth } from './firebase/firebase.utils';
+import { ToastContainer } from 'react-toastify';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import HomePage from './pages/home/homePage';
 import ShopPage from './pages/shop/shop';
 import Navbar from './components/navbar/navbar';
 import AuthPage from './pages/auth/authPage';
 import Collections from './pages/collections/collections';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends React.Component {
 	state = {
 		currentUser: null,
 	};
 
+	unSubsctibeFromAuth = null;
+
 	componentDidMount() {
-		auth.onAuthStateChanged((user) => {
-			this.setState({ currentUser: user });
-			console.log(user);
+		this.unSubsctibeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+			if (userAuth) {
+				const userRef = await createUserProfileDocument(userAuth);
+				userRef.onSnapshot((snapShot) => {
+					this.setState({
+						currentUser: {
+							id: snapShot.id,
+							...snapShot.data(),
+						},
+					});
+					console.log(this.state);
+				});
+			}
+			this.setState({ currentUser: userAuth });
 		});
+	}
+
+	componentWillUnmount() {
+		this.unSubsctibeFromAuth();
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<Navbar />
+				<ToastContainer/>
+				<Navbar currentUser={this.state.currentUser} />
 				<Switch>
 					<Route path="/authentication" exact component={AuthPage} />
 					<Route path="/shop/:collection" component={Collections} />
