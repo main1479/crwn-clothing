@@ -14,10 +14,10 @@ class App extends React.Component {
 		currentUser: null,
 	};
 
-	unSubsctibeFromAuth = null;
+	unsubscribeFromAuth = null;
 
 	componentDidMount() {
-		this.unSubsctibeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 			if (userAuth) {
 				const userRef = await createUserProfileDocument(userAuth);
 				userRef.onSnapshot((snapShot) => {
@@ -35,13 +35,13 @@ class App extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.unSubsctibeFromAuth();
+		this.unsubscribeFromAuth();
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<ToastContainer/>
+				<ToastContainer />
 				<Navbar currentUser={this.state.currentUser} />
 				<Switch>
 					<Route path="/authentication" exact component={AuthPage} />
